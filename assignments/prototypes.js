@@ -20,11 +20,14 @@ function GameObject (attributes) {
   this.createdAt = attributes.createdAt;
   this.name = attributes.name;
   this.dimensions = attributes.dimensions;
-  this.destroy = function () {
-    return `${this.name} was removed from the game.`;
-  }
+  // this.destroy = function () {
+  //   return `${this.name} was removed from the game.`;
+  // }
 };
 
+GameObject.prototype.destroy = function () {
+  return `${this.name} was removed from the game.`;
+}
 
 
 
@@ -38,13 +41,17 @@ function GameObject (attributes) {
 function CharacterStats (characterAttributes) {
   GameObject.call(this, characterAttributes);
   this.healthPoints = characterAttributes.healthPoints;
-  this.takeDamage = function () {
-    return `${this.name} took damage.`;
-  }
+  // this.takeDamage = function () {
+  //   return `${this.name} took damage.`;
+  // }
 };
+
 
 CharacterStats.prototype = Object.create(GameObject.prototype);
 
+CharacterStats.prototype.takeDamage = function () {
+  return `${this.name} took damage.`;
+}
 
 
 /*
@@ -62,12 +69,16 @@ function Humanoid (humanoidAttributes) {
   this.team = humanoidAttributes.team;
   this.weapons = humanoidAttributes.weapons;
   this.language = humanoidAttributes.language;
-  this.greet = function () {
-    return `${this.name} offers a greeting in ${this.language}.'`
-  }
+  // this.greet = function () {
+  //   return `${this.name} offers a greeting in ${this.language}.'`
+  // }
 };
 
 Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+Humanoid.prototype.greet = function () {
+  return `${this.name} offers a greeting in ${this.language}.`;
+}
 
 
 /*
@@ -145,3 +156,37 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  // const Villan = new Humanoid({
+  //   createdAt: new Date(),
+  //   dimensions: {
+  //     length: 1,
+  //     width: 2,
+  //     height: 4,
+  //   },
+  //   healthPoints: 10,
+  //   name: 'Bowser',
+  //   team: 'Koopas',
+  //   weapons: [
+  //     'Shell',
+  //     'Dagger',
+  //   ],
+  //   language: 'Crocodilish',
+  // });
+
+  // const Hero = new Humanoid({
+  //   createdAt: new Date(),
+  //   dimensions: {
+  //     length: 1,
+  //     width: 2,
+  //     height: 4,
+  //   },
+  //   healthPoints: 10,
+  //   name: 'Mario',
+  //   team: 'Peach',
+  //   weapons: [
+  //     'Green-shell',
+  //     'Mushroom',
+  //   ],
+  //   language: 'Italian',
+  // });
