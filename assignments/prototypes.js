@@ -80,7 +80,35 @@ Humanoid.prototype.greet = function () {
   return `${this.name} offers a greeting in ${this.language}.`;
 }
 
+function Hero (heroAttributes) {
+  Humanoid.call(this, heroAttributes);
+};
 
+Hero.prototype = Object.create(Humanoid.prototype);
+
+Hero.prototype.heroAttack = function () {
+  let heroAttackValue = 10;
+  if (heroAttackValue - Bowser.healthPoints >= 0){
+    console.log(Bowser.destroy());
+  } else {
+    console.log(Bowser.healthPoints - villanAttackValue);
+  }
+}
+
+function Villan (villanAttributes) {
+  Humanoid.call(this, villanAttributes);
+};
+
+Villan.prototype = Object.create(Humanoid.prototype);
+
+Villan.prototype.villanAttack = function () {
+  let villanAttackValue = 10;
+  if (villanAttackValue - Mario.healthPoints >= 0){
+    console.log(Mario.destroy());
+  } else {
+    console.log(Mario.healthPoints - villanAttackValue);
+  }
+}
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -90,66 +118,66 @@ Humanoid.prototype.greet = function () {
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
 
-  const mage = new Humanoid({
-    createdAt: new Date(),
-    dimensions: {
-      length: 2,
-      width: 1,
-      height: 1,
-    },
-    healthPoints: 5,
-    name: 'Bruce',
-    team: 'Mage Guild',
-    weapons: [
-      'Staff of Shamalama',
-    ],
-    language: 'Common Tongue',
-  });
+  // const mage = new Humanoid({
+  //   createdAt: new Date(),
+  //   dimensions: {
+  //     length: 2,
+  //     width: 1,
+  //     height: 1,
+  //   },
+  //   healthPoints: 5,
+  //   name: 'Bruce',
+  //   team: 'Mage Guild',
+  //   weapons: [
+  //     'Staff of Shamalama',
+  //   ],
+  //   language: 'Common Tongue',
+  // });
 
-  const swordsman = new Humanoid({
-    createdAt: new Date(),
-    dimensions: {
-      length: 2,
-      width: 2,
-      height: 2,
-    },
-    healthPoints: 15,
-    name: 'Sir Mustachio',
-    team: 'The Round Table',
-    weapons: [
-      'Giant Sword',
-      'Shield',
-    ],
-    language: 'Common Tongue',
-  });
+  // const swordsman = new Humanoid({
+  //   createdAt: new Date(),
+  //   dimensions: {
+  //     length: 2,
+  //     width: 2,
+  //     height: 2,
+  //   },
+  //   healthPoints: 15,
+  //   name: 'Sir Mustachio',
+  //   team: 'The Round Table',
+  //   weapons: [
+  //     'Giant Sword',
+  //     'Shield',
+  //   ],
+  //   language: 'Common Tongue',
+  // });
 
-  const archer = new Humanoid({
-    createdAt: new Date(),
-    dimensions: {
-      length: 1,
-      width: 2,
-      height: 4,
-    },
-    healthPoints: 10,
-    name: 'Lilith',
-    team: 'Forest Kingdom',
-    weapons: [
-      'Bow',
-      'Dagger',
-    ],
-    language: 'Elvish',
-  });
+  // const archer = new Humanoid({
+  //   createdAt: new Date(),
+  //   dimensions: {
+  //     length: 1,
+  //     width: 2,
+  //     height: 4,
+  //   },
+  //   healthPoints: 10,
+  //   name: 'Lilith',
+  //   team: 'Forest Kingdom',
+  //   weapons: [
+  //     'Bow',
+  //     'Dagger',
+  //   ],
+  //   language: 'Elvish',
+  // });
 
-  console.log(mage.createdAt); // Today's date
-  console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-  console.log(swordsman.healthPoints); // 15
-  console.log(mage.name); // Bruce
-  console.log(swordsman.team); // The Round Table
-  console.log(mage.weapons); // Staff of Shamalama
-  console.log(archer.language); // Elvish
-  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  console.log(mage.takeDamage()); // Bruce took damage.
-  console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  // console.log(mage.createdAt); // Today's date
+  // console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
+  // console.log(swordsman.healthPoints); // 15
+  // console.log(mage.name); // Bruce
+  // console.log(swordsman.team); // The Round Table
+  // console.log(mage.weapons); // Staff of Shamalama
+  // console.log(archer.language); // Elvish
+  // console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  // console.log(mage.takeDamage()); // Bruce took damage.
+  // console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
   // Stretch task: 
@@ -157,36 +185,39 @@ Humanoid.prototype.greet = function () {
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-  // const Villan = new Humanoid({
-  //   createdAt: new Date(),
-  //   dimensions: {
-  //     length: 1,
-  //     width: 2,
-  //     height: 4,
-  //   },
-  //   healthPoints: 10,
-  //   name: 'Bowser',
-  //   team: 'Koopas',
-  //   weapons: [
-  //     'Shell',
-  //     'Dagger',
-  //   ],
-  //   language: 'Crocodilish',
-  // });
+  const Bowser = new Villan({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Bowser',
+    team: 'Koopas',
+    weapons: [
+      'Shell',
+      'Dagger',
+    ],
+    language: 'Crocodilish',
+  });
 
-  // const Hero = new Humanoid({
-  //   createdAt: new Date(),
-  //   dimensions: {
-  //     length: 1,
-  //     width: 2,
-  //     height: 4,
-  //   },
-  //   healthPoints: 10,
-  //   name: 'Mario',
-  //   team: 'Peach',
-  //   weapons: [
-  //     'Green-shell',
-  //     'Mushroom',
-  //   ],
-  //   language: 'Italian',
-  // });
+  const Mario = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 20,
+    name: 'Mario',
+    team: 'Peach',
+    weapons: [
+      'Green-shell',
+      'Mushroom',
+    ],
+    language: 'Italian',
+  });
+
+  Mario.heroAttack();
+  Bowser.villanAttack();
